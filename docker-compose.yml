@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+
+  integration-service-app:
+    container_name: integration-service-app
+    build: .docker/integration-service/docker
+    image: integration-service-app
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./integration-service:/application:cached
+
+  integration-service-nginx:
+    container_name: integration-service-nginx
+    image: nginx:alpine
+    ports:
+      - "8000:8000"
+    volumes:
+      - .docker/integration-service/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:cached
+      - ./integration-service:/application:cached
+      - .docker/nginx/log:/var/log/nginx/
+    depends_on:
+      - integration-service-app
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=arquivei
+    volumes:
+      - mysql-data:/var/lib/mysql:cached
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql-data:
