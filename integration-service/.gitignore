@@ -10,3 +10,4 @@
 Homestead.json
 Homestead.yaml
 *.log
+/storage/app/nfe

@@ -2,16 +2,16 @@ FROM php:7.3-fpm
 LABEL maintainer="smedeiros.flavio@gmail.com"
 
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    mariadb-client \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libzip-dev \
-    locales \
-    zip \
-    libhiredis-dev \
-    jpegoptim optipng pngquant gifsicle
+  build-essential \
+  mariadb-client \
+  libpng-dev \
+  libjpeg62-turbo-dev \
+  libfreetype6-dev \
+  libzip-dev \
+  locales \
+  zip \
+  libhiredis-dev \
+  jpegoptim optipng pngquant gifsicle
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
