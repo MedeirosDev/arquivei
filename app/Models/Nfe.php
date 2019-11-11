@@ -11,7 +11,6 @@ class Nfe extends Model
     protected $table = 'nfes';
 
     protected $fillable = [
-        'status_id',
         'access_key',
         'amount',
         'xml',
