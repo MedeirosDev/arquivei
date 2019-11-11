@@ -1,26 +1,26 @@
 version: "3"
 
 services:
-  arquivei-integration-service-app:
-    container_name: arquivei-integration-service-app
-    build: .docker/integration-service/docker
-    image: arquivei-integration-service-app
+  arquivei-app:
+    container_name: arquivei-app
+    build: .docker/docker
+    image: arquivei-app
     depends_on:
       - arquivei-mysql
     volumes:
-      - ./integration-service:/application
+      - ./:/application
 
-  arquivei-integration-service-nginx:
-    container_name: arquivei-integration-service-nginx
+  arquivei-nginx:
+    container_name: arquivei-nginx
     image: nginx:alpine
     ports:
       - "8000:8000"
     volumes:
-      - ./integration-service:/application
-      - .docker/integration-service/log:/var/log/nginx/
-      - .docker/integration-service/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/application
+      - .docker/log:/var/log/nginx/
+      - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - arquivei-integration-service-app
+      - arquivei-app
       - arquivei-mysql
 
   arquivei-mysql:

@@ -4,15 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nfe extends Model
+class NfeFailure extends Model
 {
-
-    protected $table = 'nfes';
+    protected $table = 'nfes_failure';
 
     protected $fillable = [
         'access_key',
-        'amount',
+        'message',
         'xml',
     ];
-
 }
