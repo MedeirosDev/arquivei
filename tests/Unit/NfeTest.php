@@ -11,7 +11,7 @@ class NfeTest extends TestCase
 
     public function testNfe()
     {
-        $nfe = new Nfe();
+        $nfe = app()->make(Nfe::class);
 
         $nfe->GetAndStoreAllNfe();
 

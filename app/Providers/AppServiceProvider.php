@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Settings;
+use Exception;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadSettings();
+    }
+
+    private function loadSettings(): void
+    {
+        try {
+            $settings = Settings::first()->toArray() ?? [];
+            foreach ($settings as $key => $value) {
+                Config::set("arquivei.{$key}", $value);
+            }
+        } catch (Exception $exception) { }
     }
 }

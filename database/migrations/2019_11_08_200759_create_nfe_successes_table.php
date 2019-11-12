@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNfesTable extends Migration
+class CreateNfeSuccessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNfesTable extends Migration
      */
     public function up()
     {
-        Schema::create('nfes', function (Blueprint $table) {
+        Schema::create('nfe_successes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('access_key', 44)->unique();
             $table->float('amount')->unsigned();
@@ -29,6 +29,6 @@ class CreateNfesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nfes');
+        Schema::dropIfExists('nfe_successes');
     }
 }

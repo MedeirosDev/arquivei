@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Nfe extends Model
+class NfeSuccesses extends Model
 {
-
-    protected $table = 'nfes';
+    protected $table = 'nfe_successes';
 
     protected $fillable = [
         'access_key',
