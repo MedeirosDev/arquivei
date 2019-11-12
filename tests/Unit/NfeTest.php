@@ -13,7 +13,7 @@ class NfeTest extends TestCase
     {
         $nfe = new Nfe();
 
-        $result = $nfe->getAndStore(0);
+        $nfe->GetAndStoreAllNfe();
 
 
         $this->assertTrue(true);

@@ -1,8 +1,5 @@
 <?php
 
-use App\Modules\Nfe\Nfe;
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,9 +10,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/', function () {
-    $nfe = new Nfe();
-
-    $result = $nfe->getAndStore(0);
-});

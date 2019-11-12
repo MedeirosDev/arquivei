@@ -1,23 +1,26 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Integration Service Arquivei",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "arquivei",
+        "integration",
+        "service"
     ],
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-json": "*",
+        "ext-simplexml": "*",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.4",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
-        "predis/predis": "^1.1",
+        "medeirosdev/arquivei-nfe": "^1.0",
         "spatie/url": "^1.3",
-        "symfony/console": "4.3.4",
-        "ext-json": "*",
-        "ext-simplexml": "*"
+        "symfony/console": "4.3.4"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -26,6 +29,16 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "ssh://git@github.com/medeirosdev/arquivei-nfe.git"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

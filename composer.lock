@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e124eaa56872dc404207785120de3420",
+    "content-hash": "86d0f6fcf51cdd69e2bf487d4e4041a9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -950,6 +950,69 @@
             "time": "2019-10-16T21:01:05+00:00"
         },
         {
+            "name": "medeirosdev/arquivei-nfe",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@github.com/medeirosdev/arquivei-nfe.git",
+                "reference": "3e12f888cea21e5ed6068fa05c7e84457be8a93b"
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-simplexml": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "php": "^7.3",
+                "spatie/url": "^1.3",
+                "symfony/http-foundation": "^4.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2@dev",
+                "phpunit/phpunit": ">6.0",
+                "symfony/var-dumper": "^4.3",
+                "vlucas/phpdotenv": "^2.4"
+            },
+            "suggest": {
+                "illuminate/support": "Allows you to use this package from within Laravel"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MedeirosDev\\Arquivei\\Frameworks\\Laravel\\ArquiveiServiceProvider"
+                    ],
+                    "aliases": {
+                        "Arquivei": "MedeirosDev\\Arquivei\\Frameworks\\Laravel\\Arquivei"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MedeirosDev\\Arquivei\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "classmap": [
+                    "tests/"
+                ],
+                "psr-4": {
+                    "MedeirosDev\\Arquivei\\": "src/",
+                    "MedeirosDev\\Arquivei\\Tests\\Integration\\": "tests/integration",
+                    "MedeirosDev\\Arquivei\\Tests\\Unit\\": "tests/unit"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Flavio Medeiros",
+                    "email": "smedeiros.flavio@gmail.com"
+                }
+            ],
+            "description": "Arquivei NFe Getter",
+            "time": "2019-11-12T19:56:00+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.0.0",
             "source": {
@@ -1304,56 +1367,6 @@
                 "type"
             ],
             "time": "2019-11-06T22:27:00+00:00"
-        },
-        {
-            "name": "predis/predis",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nrk/predis.git",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "suggest": {
-                "ext-curl": "Allows access to Webdis when paired with phpiredis",
-                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Predis\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniele Alessandri",
-                    "email": "suppakilla@gmail.com",
-                    "homepage": "http://clorophilla.net"
-                }
-            ],
-            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
-            "homepage": "http://github.com/nrk/predis",
-            "keywords": [
-                "nosql",
-                "predis",
-                "redis"
-            ],
-            "time": "2016-06-16T16:22:20+00:00"
         },
         {
             "name": "psr/container",
@@ -4531,6 +4544,56 @@
             "time": "2019-11-06T09:42:23+00:00"
         },
         {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16T16:22:20+00:00"
+        },
+        {
             "name": "scrivo/highlight.php",
             "version": "v9.15.10.0",
             "source": {
@@ -5309,7 +5372,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-json": "*",
+        "ext-simplexml": "*"
     },
     "platform-dev": []
 }
