@@ -19,7 +19,7 @@ class Nfe
         $this->settings = $settings->first();
     }
 
-    public function GetAndStoreAllNfe()
+    public function GetAndStoreAllNfe(): void
     {
         $store = new Store();
 

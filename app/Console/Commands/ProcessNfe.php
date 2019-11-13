@@ -41,13 +41,7 @@ class ProcessNfe extends Command
      */
     public function handle()
     {
-        //$nfe = app()->make(Nfe::class);
-        //$nfe->GetAndStoreAllNfe();
-
-        NfeSuccesses::create([
-            'access_key' => Str::random(44),
-            'amount' => 0,
-            'xml' => 'test',
-        ]);
+        $nfe = app()->make(Nfe::class);
+        $nfe->GetAndStoreAllNfe();
     }
 }
