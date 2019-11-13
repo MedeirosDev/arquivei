@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Integration service Arquivei",
+        "version": "v1"
+    },
+    "paths": {
+        "/api/nfe/{access_key}": {
+            "get": {
+                "tags": [
+                    "nfe"
+                ],
+                "summary": "Return NFe",
+                "description": "Return a object of NFe",
+                "operationId": "Nfe/show",
+                "parameters": [
+                    {
+                        "name": "access_key",
+                        "in": "query",
+                        "description": "Access key for NFe",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Object of NFe"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "NFe not found"
+                    }
+                },
+                "security": [
+                    "x-api-id",
+                    "x-api-key"
+                ]
+            }
+        },
+        "/api/download/{access_key}": {
+            "get": {
+                "tags": [
+                    "nfe"
+                ],
+                "summary": "Download XML NFe",
+                "description": "Download XML of NFe",
+                "operationId": "Nfe/download",
+                "parameters": [
+                    {
+                        "name": "access_key",
+                        "in": "query",
+                        "description": "Access key for NFe",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stream file xml with named is access key"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "NFe not found or XML not found"
+                    }
+                },
+                "security": [
+                    "x-api-id",
+                    "x-api-key"
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "x-api-id": {
+                "type": "apiKey",
+                "description": "Authorization API ID",
+                "name": "x-api-id",
+                "in": "header"
+            },
+            "x-api-key": {
+                "type": "apiKey",
+                "description": "Authorization API KEY",
+                "name": "x-api-key",
+                "in": "header"
+            }
+        }
+    }
+}
