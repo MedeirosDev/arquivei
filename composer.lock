@@ -951,11 +951,11 @@
         },
         {
             "name": "medeirosdev/arquivei-nfe",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "ssh://git@github.com/medeirosdev/arquivei-nfe.git",
-                "reference": "d2aad0ad46f4127cc2f3b974d3161346a9517196"
+                "reference": "346e1b5f20a60960f2cae6fa4fbbf168d196900e"
             },
             "require": {
                 "ext-json": "*",
@@ -1010,7 +1010,7 @@
                 }
             ],
             "description": "Arquivei NFe Getter",
-            "time": "2019-11-12T23:16:56+00:00"
+            "time": "2019-11-13T14:26:00+00:00"
         },
         {
             "name": "monolog/monolog",

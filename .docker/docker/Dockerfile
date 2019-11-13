@@ -34,4 +34,4 @@ RUN chmod 0644 /etc/cron.d/laravel-cron
 
 WORKDIR /application
 
-CMD cron -f
+CMD php-fpm -D; cron -f

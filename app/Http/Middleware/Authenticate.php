@@ -2,20 +2,20 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use Symfony\Component\HttpFoundation\Response;
 
-class Authenticate extends Middleware
+class Authenticate
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string
-     */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        if (
+            $request->header('x-api-id') === config('arquivei.api_id')
+            && $request->header('x-api-key') === config('arquivei.api_key')
+        ) {
+            return $next($request);
         }
+
+        return response()->json(['message' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
     }
 }
