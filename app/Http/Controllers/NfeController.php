@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NfeResource;
 use App\Models\NfeSuccesses;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Http\JsonResponse;
 
 class NfeController extends Controller
 {
@@ -14,8 +14,7 @@ class NfeController extends Controller
         $nfe = NfeSuccesses::byAccessKey($access_key)->first();
 
         if ($nfe) {
-            $nfe->xml = route('nfe.download', ['access_key' => $access_key]);
-            return response()->json($nfe, Response::HTTP_OK);
+            return response()->json(new NfeResource($nfe), Response::HTTP_OK);
         }
 
         return abort(404);
