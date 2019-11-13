@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\NfeSuccesses;
 use App\Modules\Nfe\Nfe;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Str;
 
 class ProcessNfe extends Command
 {
@@ -20,7 +22,7 @@ class ProcessNfe extends Command
      *
      * @var string
      */
-    protected $description = 'Process Nfe. Get from Arquivei and Store';
+    protected $description = 'Process Nfe. Get from Arquivei and Store in database';
 
     /**
      * Create a new command instance.
@@ -39,7 +41,13 @@ class ProcessNfe extends Command
      */
     public function handle()
     {
-        $nfe = app()->make(Nfe::class);
-        $nfe->GetAndStoreAllNfe();
+        //$nfe = app()->make(Nfe::class);
+        //$nfe->GetAndStoreAllNfe();
+
+        NfeSuccesses::create([
+            'access_key' => Str::random(44),
+            'amount' => 0,
+            'xml' => 'test',
+        ]);
     }
 }

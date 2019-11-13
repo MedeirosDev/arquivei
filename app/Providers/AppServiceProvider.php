@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
     private function loadSettings(): void
     {
         try {
-            $settings = Settings::first()->toArray() ?? [];
+            $settings = Settings::first();
+            $settings = ($settings) ? $settings->toArray() : [];
             foreach ($settings as $key => $value) {
                 Config::set("arquivei.{$key}", $value);
             }

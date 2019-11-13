@@ -25,7 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(ProcessNfe::class)->twiceDaily(1, 13);
+        $schedule->command(ProcessNfe::class)
+            ->twiceDaily(1, 13)
+            ->appendOutputTo(storage_path('logs/cron-process-nfe.log'));
     }
 
     /**

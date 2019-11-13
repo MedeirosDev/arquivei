@@ -10,8 +10,11 @@ RUN apt-get update && apt-get install -y \
   libzip-dev \
   locales \
   zip \
-  libhiredis-dev \
-  jpegoptim optipng pngquant gifsicle
+  jpegoptim \
+  optipng \
+  pngquant \
+  gifsicle \
+  cron
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -23,4 +26,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN echo pt_BR.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
 
+# Add crontab file in the cron directory
+COPY laravel-cron /etc/cron.d/laravel-cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/laravel-cron
+
 WORKDIR /application
+
+CMD cron -f
