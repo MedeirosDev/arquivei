@@ -4,6 +4,9 @@
         "title": "API Integration service Arquivei",
         "version": "v1"
     },
+    "schemes": [
+        "https"
+    ],
     "paths": {
         "/api/nfe/{access_key}": {
             "get": {
@@ -16,7 +19,7 @@
                 "parameters": [
                     {
                         "name": "access_key",
-                        "in": "query",
+                        "in": "path",
                         "description": "Access key for NFe",
                         "required": true,
                         "schema": {
@@ -26,18 +29,31 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Object of NFe"
+                        "description": "Object of NFe",
+                        "content": {
+                            "application/json": {}
+                        }
                     },
                     "401": {
-                        "description": "Unauthorized"
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {}
+                        }
                     },
                     "404": {
-                        "description": "NFe not found"
+                        "description": "NFe not found",
+                        "content": {
+                            "application/json": {}
+                        }
                     }
                 },
                 "security": [
-                    "x-api-id",
-                    "x-api-key"
+                    {
+                        "x-api-id": {}
+                    },
+                    {
+                        "x-api-key": {}
+                    }
                 ]
             }
         },
@@ -49,10 +65,13 @@
                 "summary": "Download XML NFe",
                 "description": "Download XML of NFe",
                 "operationId": "Nfe/download",
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "access_key",
-                        "in": "query",
+                        "in": "path",
                         "description": "Access key for NFe",
                         "required": true,
                         "schema": {
@@ -62,7 +81,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Stream file xml with named is access key"
+                        "description": "Stream file xml named access key"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -72,8 +91,12 @@
                     }
                 },
                 "security": [
-                    "x-api-id",
-                    "x-api-key"
+                    {
+                        "x-api-id": {}
+                    },
+                    {
+                        "x-api-key": {}
+                    }
                 ]
             }
         }

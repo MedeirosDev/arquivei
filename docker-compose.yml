@@ -9,6 +9,7 @@ services:
       - arquivei-mysql
     volumes:
       - ./:/application
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa # map your private ssh key
 
   arquivei-nginx:
     container_name: arquivei-nginx

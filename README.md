@@ -1,74 +1,128 @@
-Posted by Edison Junior, Backend Dev at Arquivei
+# Arquivei - Desafio Bolton
 
-Desafio Bolton
---------------
+## Table of contents
+- [Getting started](#getting-started)
+    * [References](#references)
+    * [Clone Repository](#clone-repository)
+    * [Map SSH Key](#map-ssh-key)
+    * [Up Project](#up-project)
+- [Documentation](#documentation)
+    * [Allowed verbs](#allowed-verbs)
+    * [Required in the header of all requests](#required-in-the-header-of-all-requests)
+    * [Resources](#resources)
+        * [With authentication](#with-authentication)
+            * [nfe](#nfe)
+            * [download](#download)
 
-Sobre o desafio.  
-  
+## Getting startd
 
-======================
+### References
+This application was made on the criteria of the [Bolton Challenge](https://public.3.basecamp.com/p/9wuA4g7RB79CBJkjvCzdKNFS)
 
-Esse desafio é proposto para avaliarmos o conhecimento da linguagem proposta e a assinatura de código do participante.  
-  
-O desafio propoe um caso de uso, simulando os desafios do dia-a-dia da Arquivei.  
-  
-Atualmente na arquivei temos um **API** para a disponibilização de documentos do tipo nota fiscal eletrônica (NFe), onde o cliente faz uma chamada utilizando **REST** e devolvemos de 0 até 50 arquivos XML com um encode em **base64**.  
-  
-O desafio proposto é:  
-  
-1\. Integrar com a API da arquivei utilizando, os seguintes dados:
+Application endpoints are documented in [Swagger Documentation](http://127.0.0.1:8000/swagger/index.html)
 
-*   Endpoint: [https://sandbox-api.arquivei.com.br](https://sandbox-api.arquivei.com.br)
-*   Credenciais:
-    *   As credenciais devem ser inseridas do cabeçalho da requisição (header):
-        *   x-api-id: f96ae22f7c5d74fa4d78e764563d52811570588e
-        *   x-api-key: cc79ee9464257c9e1901703e04ac9f86b0f387c2
-*   Encoding:
-    *   No cabeçalho também deve ser enviado o parâmetro content-type, com o valor "application/json".
+This application uses the package [Arquivei Nfe](https://github.com/MedeirosDev/arquivei-nfe) (It's private)
 
-Exemplo em cURL da request:  
-  
+### Clone Repository
+Required ssh key in github. It's private 
 ```
-curl -X GET \\
-  https://sandbox-api.arquivei.com.br/v1/nfe/received \\
-  -H 'Content-Type: application/json' \\
-  -H 'x-api-id: f96ae22f7c5d74fa4d78e764563d52811570588e' \\
-  -H 'x-api-key: cc79ee9464257c9e1901703e04ac9f86b0f387c2'
+git clone git@github.com:MedeirosDev/arquivei.git
 ```
-  
-Caso ainda tenha dúvidas você pode consultar a documentação em: [https://docs.arquivei.com.br/?urls.primaryName=Arquivei%20API](https://docs.arquivei.com.br/?urls.primaryName=Arquivei%20API)
 
-  
+### Map SSH Key
+Change `docker-compose.yml` to map your private ssh key to volume docker `/root/.ssh/id_rsa`
 
-2\. Para cada nota retornada via API inserir a **chave de acesso** mais o **valor** total da nota**,** em um banco de dados relacional de sua escolha, até o fim dos registros.  
-  
-3\. Criar um endpoint (REST) no projeto onde o usuário informe uma **chave de acesso** e o sistema retorne o **valor** do documento.  
-  
 
-O que mais?
-===========
+### Up Project
+Up Containers
+```
+docker-compose up -d --build
+```
 
-  
+Update project dependencies
+```
+docker exec -it arquivei-app export COMPOSER_MEMORY_LIMIT=-1
+docker exec -it arquivei-app composer update
+```
 
-*   Documente como seu projeto se comporta e o passo-a-passo para a utilização do mesmo.
-*   Crie um repositório github ou bitbucket e envie seus arquivos.
-*   Utilize docker.
+copy .env.example to .env
+```
+docker exec -it arquivei-app cp .env.example .env
+```
 
-  
 
-Extra
-=====
+Clear cache
+```
+docker exec -it arquivei-app php artisan cache:clear && composer dumpautoload
+```
 
-  
+Run Migrations with seeders
+```
+docker exec -it arquivei-app php artisan migrate:refresh --seed
+```
 
-*   Principios de código limpo (S.O.L.I.D)
-*   Desacoplamento
-*   Arquitetura em camadas (ou Hexagonal)
-*   Testes unitários.
 
-  
-E bom desafio.
+## Documentation
+### Allowed verbs
+ `GET`
 
- <img src="https://3.basecamp-static.com/assets/logos/paperclip-logo-349bf403c234be9d67457f2825054e138f6d54affe467717f3da909cab741cba.svg" width="80" height="65"> 
+### Required in the header of all requests
+Media type
+```
+Content-Type: application/json
+Accept: application/json
+```
 
-Shared with [Basecamp](https://basecamp.com/)
+Authorization
+```
+x-api-id: f96ae22f7c5d74fa4d78e764563d52811570588e
+x-api-key: cc79ee9464257c9e1901703e04ac9f86b0f387c2
+```
+
+# Resources
+## With authentication
+### NFe
+[GET /nfe/{access_key}](http://127.0.0.1:8000/nfe/{access_key}) - Returns NFe
+
+Request headers
+```
+Content-Type: application/json
+Accept: application/json
+x-api-id: f96ae22f7c5d74fa4d78e764563d52811570588e
+x-api-key: cc79ee9464257c9e1901703e04ac9f86b0f387c2
+```
+
+Request body
+```json
+{}
+```
+
+Response body
+```json
+{
+    "id": 1,
+    "access_key": "{access_key}",
+    "amount": 365.89,
+    "xml": "http://127.0.0.1:8000/api/nfe/{access_key}",
+    "created_at": "2019-11-12 23:11:59",
+    "updated_at": "2019-11-12 23:11:59"
+}
+```
+
+### Download
+[GET /download/{access_key}](http://127.0.0.1:8000/download/{access_key}) - Download xml of NFe
+
+Request headers
+```
+Content-Type: application/json
+Accept: application/json
+x-api-id: f96ae22f7c5d74fa4d78e764563d52811570588e
+x-api-key: cc79ee9464257c9e1901703e04ac9f86b0f387c2
+```
+
+Request body
+```json
+{}
+```
+
+Response Stream file xml named `{access_key}.xml`
