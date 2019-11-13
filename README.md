@@ -1,4 +1,4 @@
-# Arquivei - Desafio Bolton
+# Arquivei - Bolton Challenge
 
 ## Table of contents
 - [Getting started](#getting-started)
