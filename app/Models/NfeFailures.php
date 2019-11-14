@@ -14,4 +14,12 @@ class NfeFailures extends Model
         'amount',
         'xml',
     ];
+
+    public $id;
+    public $access_key;
+    public $message;
+    public $amount;
+    public $xml;
+    public $created_at;
+    public $updated_at;
 }

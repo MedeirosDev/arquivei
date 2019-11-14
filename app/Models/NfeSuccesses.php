@@ -41,6 +41,16 @@ class NfeSuccesses extends Model
      */
     public $xml;
 
+    /**
+     * @OA\Property(type="string")
+     */
+    public $created_at;
+
+    /**
+     * @OA\Property(type="string")
+     */
+    public $updated_at;
+
     public function scopeByAccessKey(Builder $builder, string $accessKey): Builder
     {
         return $builder->where('access_key', $accessKey);

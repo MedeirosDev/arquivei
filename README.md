@@ -6,6 +6,7 @@
     * [Clone Repository](#clone-repository)
     * [Map SSH Key](#map-ssh-key)
     * [Up Project](#up-project)
+- [Generation Swagger documentation](#Generation-swagger-documentation)
 - [Documentation](#documentation)
     * [Allowed verbs](#allowed-verbs)
     * [Required in the header of all requests](#required-in-the-header-of-all-requests)
@@ -64,6 +65,12 @@ Run Migrations with seeders
 ```
 docker exec -it arquivei-app php artisan migrate:refresh --seed
 ```
+
+
+## Generation Swagger documentation
+```bash
+docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
+``` 
 
 
 ## Documentation
@@ -130,3 +137,12 @@ Request body
 ```
 
 Response Stream file xml named `{access_key}.xml`
+
+
+### Swagger documentation
+[Access documentation](http://127.0.0.1:8000/swagger/index.html) 
+
+For refresh Swagger documentation `swagger.js`
+```bash
+docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
+``` 
