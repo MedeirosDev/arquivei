@@ -8,7 +8,7 @@
 - [Generation Swagger documentation](#generation-swagger-documentation)
 - [Documentation](#documentation)
     * [Architecture](#architecture)
-    * [Allowed verbs](#allowed-verbs)
+    * [Allowed verbs and Port](#allowed-verbs-and-port)
     * [Required in the header of all requests](#required-in-the-header-of-all-requests)
     * [Resources](#resources)
         * [With authentication](#with-authentication)
@@ -58,7 +58,8 @@ docker exec -it arquivei-app php artisan key:generate
 
 Clear cache
 ```
-docker exec -it arquivei-app php artisan cache:clear && composer dumpautoload
+docker exec -it arquivei-app php artisan cache:clear
+docker exec -it arquivei-app composer dumpautoload
 ```
 
 Run Migrations with seeders
@@ -84,8 +85,10 @@ docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
 ![Architecture](extra_files_for_documentations/structure.png)
 
 
-### Allowed verbs
+### Allowed verbs and Port
  `GET`
+ 
+ Port: `8000`
 
 ### Required in the header of all requests
 Media type
