@@ -13,7 +13,7 @@ class NfeResource extends JsonResource
      * @param  Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request = null)
     {
         $this->resource->xml = route('nfe.show', ['access_key' => $this->access_key]);
         return parent::toArray($request);

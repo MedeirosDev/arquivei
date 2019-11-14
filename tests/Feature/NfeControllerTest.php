@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Resources\NfeResource;
 use App\Models\NfeSuccesses;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -25,7 +26,14 @@ class NfeControllerTest extends TestCase
         $this->route['show'] = "api/nfe/{$this->access_key}";
         $this->route['download'] = "api/download/{$this->access_key}";
 
-        $this->nfe = $this->createNfe($this->access_key, 658.35);
+        $this->nfe = $this->createNfe($this->access_key, 658.35)->refresh();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        parent::tearDownAfterClass();
+
+        Storage::disk('local')->deleteDirectory('nfe_test');
     }
 
     public function testShow()
@@ -37,7 +45,9 @@ class NfeControllerTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertJson($this->nfe->toArray());
+            ->assertJson(
+                (new NfeResource($this->nfe))->toArray()
+            );
     }
 
     public function testDownload()
