@@ -16,6 +16,7 @@
             * [nfe](#nfe)
             * [download](#download)
     * [Swagger documentation](#swagger-documentation)
+    * [Run automatized tests](#run-automatized-tests)
 
 ## Getting startd
 
@@ -155,4 +156,23 @@ Response Stream file xml named `{access_key}.xml`
 For refresh Swagger documentation `swagger.js`
 ```bash
 docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
+``` 
+
+
+### Run automatized tests
+
+Create database for testing
+```bash
+docker exec -it arquivei-app php artisan testdb:create
+``` 
+
+Run migrate for testing database
+```bash
+docker exec -it arquivei-app php artisan migrate --env=testing --seed
+``` 
+
+
+Run automatized tests
+```bash
+docker exec -it arquivei-app ./vendor/bin/phpunit
 ``` 

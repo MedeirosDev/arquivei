@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Console\Commands\ProcessNfe;
+use App\Console\Commands\TestDbCreate;
+use App\Console\Commands\TestDbDelete;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         ProcessNfe::class,
+        TestDbCreate::class,
+        TestDbDelete::class,
     ];
 
     /**

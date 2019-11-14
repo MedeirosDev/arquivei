@@ -6,9 +6,11 @@ use App\Http\Resources\NfeResource;
 use App\Models\NfeSuccesses;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class NfeControllerTest extends TestCase
 {
+    use DatabaseTransactions;
 
     private $route = [
         'show' => '',
