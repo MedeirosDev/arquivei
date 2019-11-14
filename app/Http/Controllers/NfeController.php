@@ -38,14 +38,14 @@ class NfeController extends Controller
 {
     /**
      * @OA\Get(
-     *     tags={"nfe"},
+     *     tags={"NFe"},
      *     summary="Return NFe",
      *     description="Return a object of NFe",
      *     path="/api/nfe/{access_key}",
      *     operationId="Nfe/show",
      *     @OA\Parameter(
      *          name="access_key",
-     *          in="query",
+     *          in="path",
      *          description="Access key for NFe",
      *          required=true,
      *          @OA\Schema(
@@ -53,12 +53,24 @@ class NfeController extends Controller
      *         )
      *     ),
      *      security={
-     *          "x-api-id",
-     *          "x-api-key",
+     *          {"x-api-id": {}},
+     *          {"x-api-key": {}},
      *      },
-     *     @OA\Response(response="200", description="Object of NFe"),
-     *     @OA\Response(response="401", description="Unauthorized"),
-     *     @OA\Response(response="404", description="NFe not found"),
+     *     @OA\Response(
+     *          response="200",
+     *          description="Object of NFe",
+     *          @OA\JsonContent(ref="#/components/schemas/NFe")
+     *     ),
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/Error")
+     *      ),
+     *     @OA\Response(
+     *          response="404",
+     *          description="NFe not found",
+     *          @OA\JsonContent(ref="#/components/schemas/Error")
+     *      ),
      * ),
      */
     public function show(string $access_key)
@@ -69,20 +81,20 @@ class NfeController extends Controller
             return response()->json(new NfeResource($nfe), Response::HTTP_OK);
         }
 
-        return abort(404);
+        return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
     }
 
 
     /**
      * @OA\Get(
-     *     tags={"nfe"},
+     *     tags={"NFe"},
      *     summary="Download XML NFe",
      *     description="Download XML of NFe",
      *     path="/api/download/{access_key}",
      *     operationId="Nfe/download",
      *     @OA\Parameter(
      *          name="access_key",
-     *          in="query",
+     *          in="path",
      *          description="Access key for NFe",
      *          required=true,
      *          @OA\Schema(
@@ -90,12 +102,24 @@ class NfeController extends Controller
      *         )
      *     ),
      *      security={
-     *          "x-api-id",
-     *          "x-api-key",
+     *          {"x-api-id": {}},
+     *          {"x-api-key": {}},
      *      },
-     *     @OA\Response(response="200", description="Stream file xml with named is access key"),
-     *     @OA\Response(response="401", description="Unauthorized"),
-     *     @OA\Response(response="404", description="NFe not found or XML not found"),
+     *      @OA\Response(
+     *          response="200",
+     *          description="Stream file xml with named is access key",
+     *          @OA\MediaType(mediaType="application/octet-stream")
+     *      ),
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/Error")
+     *      ),
+     *     @OA\Response(
+     *          response="404",
+     *          description="NFe not found",
+     *          @OA\JsonContent(ref="#/components/schemas/Error")
+     *      ),
      * ),
      */
     public function download(string $access_key)
@@ -106,6 +130,6 @@ class NfeController extends Controller
             return Storage::disk('local')->download($nfe->xml, "{$access_key}.xml");
         }
 
-        return abort(404);
+        return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
     }
 }

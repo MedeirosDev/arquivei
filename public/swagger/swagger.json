@@ -4,14 +4,11 @@
         "title": "API Integration service Arquivei",
         "version": "v1"
     },
-    "schemes": [
-        "https"
-    ],
     "paths": {
         "/api/nfe/{access_key}": {
             "get": {
                 "tags": [
-                    "nfe"
+                    "NFe"
                 ],
                 "summary": "Return NFe",
                 "description": "Return a object of NFe",
@@ -31,28 +28,40 @@
                     "200": {
                         "description": "Object of NFe",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NFe"
+                                }
+                            }
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
                         }
                     },
                     "404": {
                         "description": "NFe not found",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
                         }
                     }
                 },
                 "security": [
                     {
-                        "x-api-id": {}
+                        "x-api-id": []
                     },
                     {
-                        "x-api-key": {}
+                        "x-api-key": []
                     }
                 ]
             }
@@ -60,14 +69,11 @@
         "/api/download/{access_key}": {
             "get": {
                 "tags": [
-                    "nfe"
+                    "NFe"
                 ],
                 "summary": "Download XML NFe",
                 "description": "Download XML of NFe",
                 "operationId": "Nfe/download",
-                "produces": [
-                    "application/json"
-                ],
                 "parameters": [
                     {
                         "name": "access_key",
@@ -81,27 +87,71 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Stream file xml named access key"
+                        "description": "Stream file xml with named is access key",
+                        "content": {
+                            "application/octet-stream": {}
+                        }
                     },
                     "401": {
-                        "description": "Unauthorized"
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
                     },
                     "404": {
-                        "description": "NFe not found or XML not found"
+                        "description": "NFe not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
                     {
-                        "x-api-id": {}
+                        "x-api-id": []
                     },
                     {
-                        "x-api-key": {}
+                        "x-api-key": []
                     }
                 ]
             }
         }
     },
     "components": {
+        "schemas": {
+            "Error": {
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "NFe": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "access_key": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "xml": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "x-api-id": {
                 "type": "apiKey",
