@@ -72,6 +72,11 @@ Run Migrations with seeders
 docker exec -it arquivei-app php artisan migrate:refresh --seed
 ```
 
+Run Process Nfe
+```
+docker exec -it arquivei-app php artisan process:nfe
+```
+
 
 ## Generation Swagger documentation
 ```bash
