@@ -21,10 +21,10 @@ This application was made on the criteria of the [Bolton Challenge](https://publ
 
 Application endpoints are documented in [Swagger Documentation](http://127.0.0.1:8000/swagger/index.html)
 
-This application uses the package [Arquivei Nfe](https://github.com/MedeirosDev/arquivei-nfe) (It's private)
+This application uses the package [Arquivei NFe](https://github.com/MedeirosDev/arquivei-nfe) (It's private)
 
 ### Clone Repository
-Required ssh key in github. It's private 
+Required ssh key in Github. It's a repository private 
 ```
 git clone git@github.com:MedeirosDev/arquivei.git
 ```
@@ -41,7 +41,6 @@ docker-compose up -d --build
 
 Update project dependencies
 ```
-docker exec -it arquivei-app export COMPOSER_MEMORY_LIMIT=-1
 docker exec -it arquivei-app composer update
 ```
 

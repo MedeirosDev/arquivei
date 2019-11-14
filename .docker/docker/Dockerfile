@@ -23,6 +23,7 @@ RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --wi
 RUN docker-php-ext-install gd
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV COMPOSER_MEMORY_LIMIT=-1
 
 RUN echo pt_BR.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
 
