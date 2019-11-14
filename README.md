@@ -81,7 +81,7 @@ docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
 ## Documentation
 
 ### Architecture
-
+![Architecture](extra_files_for_documentations/structure.png)
 
 
 ### Allowed verbs
