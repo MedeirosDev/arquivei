@@ -4,7 +4,6 @@
 - [Getting started](#getting-started)
     * [References](#references)
     * [Clone Repository](#clone-repository)
-    * [Map SSH Key](#map-ssh-key)
     * [Up Project](#up-project)
 - [Generation Swagger documentation](#generation-swagger-documentation)
 - [Documentation](#documentation)
@@ -27,18 +26,13 @@ Application endpoints are documented in [Swagger Documentation](http://127.0.0.1
 
 This application uses the packages
 
-- [medeirosdev/arquivei-nfe](https://github.com/MedeirosDev/arquivei-nfe) (It's private)
+- [medeirosdev/arquivei-nfe](https://github.com/MedeirosDev/arquivei-nfe)
 - [zircote/swagger-php](https://github.com/MedeirosDev/arquivei-nfe)
 
 ### Clone Repository
-Required ssh key in Github. It's a repository private 
 ```
-git clone git@github.com:MedeirosDev/arquivei.git
+git clone https://github.com/MedeirosDev/arquivei.git
 ```
-
-### Map SSH Key
-Change `docker-compose.yml` to map your private ssh key to volume docker `/root/.ssh/id_rsa`
-
 
 ### Up Project
 Up Containers
