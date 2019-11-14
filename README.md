@@ -6,7 +6,7 @@
     * [Clone Repository](#clone-repository)
     * [Map SSH Key](#map-ssh-key)
     * [Up Project](#up-project)
-- [Generation Swagger documentation](#Generation-swagger-documentation)
+- [Generation Swagger documentation](#generation-swagger-documentation)
 - [Documentation](#documentation)
     * [Allowed verbs](#allowed-verbs)
     * [Required in the header of all requests](#required-in-the-header-of-all-requests)
@@ -14,6 +14,7 @@
         * [With authentication](#with-authentication)
             * [nfe](#nfe)
             * [download](#download)
+    * [Swagger documentation](#swagger-documentation)
 
 ## Getting startd
 
@@ -22,7 +23,10 @@ This application was made on the criteria of the [Bolton Challenge](https://publ
 
 Application endpoints are documented in [Swagger Documentation](http://127.0.0.1:8000/swagger/index.html)
 
-This application uses the package [Arquivei NFe](https://github.com/MedeirosDev/arquivei-nfe) (It's private)
+This application uses the packages
+
+- [medeirosdev/arquivei-nfe](https://github.com/MedeirosDev/arquivei-nfe) (It's private)
+- [zircote/swagger-php](https://github.com/MedeirosDev/arquivei-nfe)
 
 ### Clone Repository
 Required ssh key in Github. It's a repository private 
@@ -74,6 +78,11 @@ docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
 
 
 ## Documentation
+
+## Architecture
+
+
+
 ### Allowed verbs
  `GET`
 
