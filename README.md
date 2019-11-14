@@ -49,6 +49,11 @@ copy .env.example to .env
 docker exec -it arquivei-app cp .env.example .env
 ```
 
+Generate Laravel key
+```
+docker exec -it arquivei-app php artisan key:generate
+```
+
 
 Clear cache
 ```
