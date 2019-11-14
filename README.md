@@ -8,6 +8,7 @@
     * [Up Project](#up-project)
 - [Generation Swagger documentation](#generation-swagger-documentation)
 - [Documentation](#documentation)
+    * [Architecture](#architecture)
     * [Allowed verbs](#allowed-verbs)
     * [Required in the header of all requests](#required-in-the-header-of-all-requests)
     * [Resources](#resources)
@@ -79,7 +80,7 @@ docker exec -it arquivei-app ./extra_files_for_documentations/swagger/swagger.sh
 
 ## Documentation
 
-## Architecture
+### Architecture
 
 
 
