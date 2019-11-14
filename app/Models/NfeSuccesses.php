@@ -11,8 +11,20 @@ use Illuminate\Database\Eloquent\Model;
  *   type="object"
  * )
  */
+
+
 class NfeSuccesses extends Model
 {
+
+    /**
+     * @OA\Property(property="id", type="integer")
+     * @OA\Property(property="access_key", type="string")
+     * @OA\Property(property="amount", type="number", description="NF amount")
+     * @OA\Property(property="xml", type="string", description="Url for download xml of NF")
+     * @OA\Property(property="created_at", type="string")
+     * @OA\Property(property="updated_at", type="string")
+     */
+
     protected $table = 'nfe_successes';
 
     protected $fillable = [
@@ -20,36 +32,6 @@ class NfeSuccesses extends Model
         'amount',
         'xml',
     ];
-
-    /**
-     * @OA\Property(type="integer")
-     */
-    public $id;
-
-    /**
-     * @OA\Property(type="string")
-     */
-    public $access_key;
-
-    /**
-     * @OA\Property(type="number")
-     */
-    public $amount;
-
-    /**
-     * @OA\Property(type="string")
-     */
-    public $xml;
-
-    /**
-     * @OA\Property(type="string")
-     */
-    public $created_at;
-
-    /**
-     * @OA\Property(type="string")
-     */
-    public $updated_at;
 
     public function scopeByAccessKey(Builder $builder, string $accessKey): Builder
     {

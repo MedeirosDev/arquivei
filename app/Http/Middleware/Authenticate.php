@@ -15,7 +15,6 @@ class Authenticate
         ) {
             return $next($request);
         }
-
         return response()->json(['message' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
     }
 }

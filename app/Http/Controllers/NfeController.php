@@ -81,7 +81,7 @@ class NfeController extends Controller
             return response()->json(new NfeResource($nfe), Response::HTTP_OK);
         }
 
-        return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
+        return response()->json(['message' => 'Not found'], Response::HTTP_NOT_FOUND);
     }
 
 
@@ -130,6 +130,6 @@ class NfeController extends Controller
             return Storage::disk('local')->download($nfe->xml, "{$access_key}.xml");
         }
 
-        return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
+        return response()->json(['message' => 'Not found'], Response::HTTP_NOT_FOUND);
     }
 }

@@ -143,9 +143,11 @@
                         "type": "string"
                     },
                     "amount": {
+                        "description": "NF amount",
                         "type": "number"
                     },
                     "xml": {
+                        "description": "Url for download xml of NF",
                         "type": "string"
                     },
                     "created_at": {
